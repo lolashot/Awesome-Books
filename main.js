@@ -63,7 +63,7 @@ const deleteTask = (e) => {
 };
 
 (() => {
-  data = JSON.parse(localStorage.getItem('data')) || []
+  data = JSON.parse(localStorage.getItem('data')) || [];
   createBooks();
   deleteTask({});
 })();
