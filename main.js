@@ -5,11 +5,6 @@ const msg = document.getElementById('msg');
 const books = document.getElementById('books');
 const add = document.getElementById('add');
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  formValidation();
-});
-
 let formValidation = () => {
   if (textInput.value === '') {
     msg.innerHTML = 'Title cannot be blank';
@@ -20,16 +15,16 @@ let formValidation = () => {
   }
 };
 
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  formValidation();
+});
+
 let data = [{}];
 
-let acceptData = () => {
-  data.push({
-    text: textInput.value,
-    date: dateInput.value,
-  });
-
-  localStorage.setItem('data', JSON.stringify(data));
-  createBooks();
+let resetForm = () => {
+  textInput.value = '';
+  dateInput.value = '';
 };
 
 let createBooks = () => {
@@ -52,19 +47,28 @@ let createBooks = () => {
   resetForm();
 };
 
-let deleteTask = (e) => {
+let acceptData = () => {
+  data.push({
+    text: textInput.value,
+    date: dateInput.value,
+  });
+
+  localStorage.setItem('data', JSON.stringify(data));
+  createBooks();
+};
+
+
+
+const deleteTask = (e) => {
   e.parentElement.parentElement.remove();
   data.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem('data', JSON.stringify(data));
 };
 
-let resetForm = () => {
-  textInput.value = '';
-  dateInput.value = '';
-};
+
 
 (() => {
   data = JSON.parse(localStorage.getItem('data')) || []
-  console.log(data);
   createBooks();
+  deleteTask({});
 })();
