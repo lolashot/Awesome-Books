@@ -34,7 +34,7 @@ body {
 #books {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0px;
+  gap: 0;
   margin: 0;
 }
 
