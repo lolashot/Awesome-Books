@@ -13,6 +13,11 @@ const acceptData = () => {
     date: dateInput.value,
   });
 
+  const resetForm = () => {
+    textInput.value = '';
+    dateInput.value = '';
+  };
+
   const createBooks = () => {
     books.innerHTML = '';
     data.forEach((x, y) => {
@@ -26,9 +31,9 @@ const acceptData = () => {
             </div>
             <hr/>
           </div>
-      `)
-  });
-  
+      `);
+    });
+
     resetForm();
   };
 
@@ -51,18 +56,11 @@ form.addEventListener('submit', (e) => {
   formValidation();
 });
 
-const resetForm = () => {
-  textInput.value = '';
-  dateInput.value = '';
-};
-
 const deleteTask = (e) => {
   e.parentElement.parentElement.remove();
   data.splice(e.parentElement.parentElement.id, 1);
   localStorage.setItem('data', JSON.stringify(data));
 };
-
-
 
 (() => {
   data = JSON.parse(localStorage.getItem('data')) || []
