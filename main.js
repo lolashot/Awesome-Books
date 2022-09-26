@@ -39,7 +39,7 @@ const resetForm = () => {
 
 const createBooks = () => {
   books.innerHTML = '';
-  data.map((x, y) => (
+  data.forEach((x, y) => {
     (books.innerHTML += `
     <div id=${y}>
           <p>${x.text}</p>
@@ -51,7 +51,7 @@ const createBooks = () => {
           <hr/>
         </div>
     `)
-  ));
+});
 
   resetForm();
 };
