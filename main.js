@@ -7,6 +7,11 @@ const add = document.getElementById('add');
 
 let data = [{}];
 
+const resetForm = () => {
+  textInput.value = '';
+  dateInput.value = '';
+};
+
 const createBooks = () => {
   books.innerHTML = '';
   data.forEach((x, y) => {
@@ -50,11 +55,6 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
   formValidation();
 });
-
-const resetForm = () => {
-  textInput.value = '';
-  dateInput.value = '';
-};
 
 const deleteTask = (e) => {
   e.parentElement.parentElement.remove();
