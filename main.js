@@ -5,33 +5,11 @@ const msg = document.getElementById('msg');
 const books = document.getElementById('books');
 const add = document.getElementById('add');
 
-let data = [{}];
-
-const acceptData = () => {
+let acceptData = () => {
   data.push({
     text: textInput.value,
     date: dateInput.value,
   });
-
-  const createBooks = () => {
-    books.innerHTML = '';
-    data.map((x, y) => {
-       (books.innerHTML += `
-      <div id=${y}>
-            <p>${x.text}</p>
-            <p>${x.date}</p>
-            <div class='options'>
-            <button class='' onClick ='deleteTask(this);createBooks()' class=''>Remove
-            </button>
-            </div>
-            <hr/>
-          </div>
-      `);
-      return;
-    });
-  
-    resetForm();
-  };
 
   localStorage.setItem('data', JSON.stringify(data));
   createBooks();
@@ -52,9 +30,30 @@ form.addEventListener('submit', (e) => {
   formValidation();
 });
 
+let data = [{}];
+
 const resetForm = () => {
   textInput.value = '';
   dateInput.value = '';
+};
+
+const createBooks = () => {
+  books.innerHTML = '';
+  data.map((x, y) => {
+    return (books.innerHTML += `
+    <div id=${y}>
+          <p>${x.text}</p>
+          <p>${x.date}</p>
+          <div class='options'>
+          <button class='' onClick ='deleteTask(this);createBooks()' class=''>Remove
+          </button>
+          </div>
+          <hr/>
+        </div>
+    `);
+  });
+
+  resetForm();
 };
 
 const deleteTask = (e) => {
