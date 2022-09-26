@@ -62,4 +62,8 @@ const deleteTask = (e) => {
   localStorage.setItem('data', JSON.stringify(data));
 };
 
-
+(() => {
+  data = JSON.parse(localStorage.getItem('data')) || [];
+  createBooks();
+  deleteTask({});
+})();
